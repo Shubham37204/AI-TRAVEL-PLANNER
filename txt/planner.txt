@@ -1,0 +1,46 @@
+# from langchain.messages import HumanMessage, AIMessage, SystemMessage
+# from src.utils.logger import get_logger
+# from src.utils.custom_exception import CustomException
+# from src.chains.itinerary import generate_prompt
+
+# logger = get_logger(__name__)
+
+# class TravelPlanner:
+#     def __init__(self):
+#         self.message = []
+#         self.city = ""
+#         self.interests=[]
+#         self.itineary=""
+        
+#         logger.info("initialised TravelPlanner instance")
+        
+#     def set_city(self,city:str):
+#         try:
+#             self.city=city
+#             self.message.append(HumanMessage(content=city))
+#             logger.info("city successfully setup")
+#         except Exception as e:
+#             logger.error(f"error whiile setting city : {e}")
+#             raise CustomException("Failed to set city" , e)
+        
+#     def set_interests(self,interests:str):
+#         try:
+#             self.interests=[i.strip() for i in interests.split(", ")]
+#             self.message.append(HumanMessage(content=interests))
+#             logger.info("interests successfully setup")
+#         except Exception as e:
+#             logger.error(f"error whiile setting interests : {e}")
+#             raise CustomException("Failed to set interests" , e)
+    
+#     def create_itineary(self):
+#         try:
+#             logger.info(f"Gnerating itineary for {self.city} and for interests : {self.interests}")
+#             itineary = generate_prompt(self.set_city,self.set_interests)
+#             self.itineary=itineary
+#             self.message.append(AIMessage(content=itineary))
+#             logger.info("Itineary generated sucesffully..")
+#             return itineary
+#         except Exception as e:
+#             logger.error(f"error whiile creating itineary : {e}")
+#             raise CustomException("Failed to create itineary" , e)
+        

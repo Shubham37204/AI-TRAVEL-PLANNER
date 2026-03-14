@@ -1,0 +1,46 @@
+Dockerfile for Streamlit Python Application
+
+This Dockerfile builds a lightweight containerized environment for running
+a Streamlit-based Python application.
+
+Steps performed in this Dockerfile:
+
+1. Base Image
+   - Uses the official Python 3.10 slim image as the parent image.
+   - Slim images reduce container size while still providing Python runtime.
+
+2. Environment Variables
+   - PYTHONDONTWRITEBYTECODE=1
+        Prevents Python from creating .pyc files to reduce unnecessary files.
+   - PYTHONUNBUFFERED=1
+        Ensures logs are printed directly to the terminal without buffering,
+        which is useful for real-time logging in Docker containers.
+
+3. Working Directory
+   - Sets /app as the working directory inside the container.
+   - All application files and commands will run from this directory.
+
+4. System Dependencies
+   - Installs build-essential and curl using apt-get.
+   - build-essential: required for compiling Python packages with C extensions.
+   - curl: useful for network requests or debugging.
+   - Cleans package cache to reduce image size.
+
+5. Copy Application Code
+   - Copies the entire project directory from the host machine into /app
+     inside the container.
+
+6. Install Python Package
+   - Runs `pip install -e .` which installs the project in editable mode.
+   - This executes setup.py and installs project dependencies.
+
+7. Expose Port
+   - Exposes port 8501, which is the default port used by Streamlit.
+
+8. Start Application
+   - Runs the Streamlit app using:
+        streamlit run app.py
+   - Configures Streamlit to:
+        • run on port 8501
+        • accept external connections (0.0.0.0)
+        • run in headless mode for container environments
