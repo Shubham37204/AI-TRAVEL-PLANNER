@@ -112,9 +112,7 @@ AI-TRAVEL-PLANNER
 - **app.py** → Entry point of the application  
 - **Dockerfile** → Containerizes the application  
 - **k8s-deployment.yaml** → Kubernetes deployment configuration
-```
 
----
 
 # ⚙️ Installation
 
